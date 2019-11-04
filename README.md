@@ -1,2 +1,0 @@
-# ReactPodomoro
-Created with CodeSandbox
