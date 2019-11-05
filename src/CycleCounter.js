@@ -2,7 +2,9 @@ import React, { Fragment } from "react";
 
 class CycleCounter extends React.Component {
   render() {
-    let counterCycle = Math.floor(this.props.counterTimeCycle / 1500);
+    let counterCycle = Math.floor(
+      this.props.counterTimeCycle.getMinutes() / 25
+    );
 
     return (
       <Fragment>

@@ -6,7 +6,7 @@ class PodomoroTimer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      counterTimeTimer: 0,
+      counterTimeTimer: new Date(0),
       buttonStateTimer: "start",
       intervalIdTimer: 0
     };
@@ -16,7 +16,6 @@ class PodomoroTimer extends React.Component {
   }
 
   handleClickTimer() {
-    // Switch value start & stop
     if (this.state.buttonStateTimer !== "stop") {
       this.setState({
         buttonStateTimer: "stop",
@@ -29,17 +28,16 @@ class PodomoroTimer extends React.Component {
   }
 
   handleClickCycle() {
-    let counterStartNew = Math.floor(this.state.counterTimeTimer / 1500) * 1500;
+    let counterStartNew =
+      Math.floor(this.state.counterTimeTimer.getMinutes() / 25) * 25;
     this.resetTimeTimer();
-    this.setState({
-      counterTimeTimer: counterStartNew
-    });
+    this.setState({ counterTimeTimer: new Date(counterStartNew) });
   }
 
   setTimeTimer() {
     return setInterval(() => {
       this.setState(state => ({
-        counterTimeTimer: state.counterTimeTimer + 1
+        counterTimeTimer: new Date(state.counterTimeTimer.getTime() + 1000)
       }));
     }, 1000);
   }
